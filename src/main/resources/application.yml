@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: es-search
+  profiles:
+    active: local
+  servlet:
+    multipart:
+      max-file-size: 4096MB
+      max-request-size: 4096MB
+
+server:
+  max-http-header-size: 1048576
+  port: 7430
+  connection-timeout: 1800000
+
+
+
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+  level:
+    cn.huacloud.hai.search: debug
+
+swagger:
+  base-package: com.hyzs.essearch
+
+spring.datasource:
+  #  url: jdbc:mysql://172.16.18.28:3306/judicial_documents?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+  url: jdbc:mysql://172.16.18.28:3306/judicial_documents?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+  username: root
+  password: hcf@AI123456
+  driver-class-name: com.mysql.jdbc.Driver
+
+spring.jpa.properties.hibernate.hbm2ddl.auto: update
+
+#spring.data.elasticsearch.cluster-nodes: 172.16.119.30:9300,172.16.119.31:9300,172.16.119.33:9300
+
+es:
+  enable: true
+  onlineFlag: Y
+  clusterName: es62
+  nodes: 172.16.119.30:9300;172.16.119.31:9300;172.16.119.33:9300
+
+aiOpenClient:
+  url: "http://172.16.121.31:7416/api"
+  appKey: test
+  secret: 123456
+
+#janusgraph:
+#  storage:
+#    backend: hbase
+#    hostname: 172.16.10.53
+#    hbase:
+#      table: janusgraph_table1
+#  index:
+#    search:
+#      backend: elasticsearch
+#      hostname: 172.16.119.30,172.16.119.31,172.16.119.33
